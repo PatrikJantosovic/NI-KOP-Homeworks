@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KOP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KOP_jar</output-path>
+    <root id="archive" name="KOP.jar">
+      <element id="module-output" name="KOP" />
+    </root>
+  </artifact>
+</component>
