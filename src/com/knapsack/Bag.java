@@ -57,7 +57,8 @@ public class Bag {
 
   public void checkSolution(){
     if(this.CorrectSolution.Price==this.BagSolution.Price) return;
-    System.out.println("Different results for bag: "+ this.Id + ", correct result: "+this.CorrectSolution.Price+ ", your result: "+this.BagSolution.Price);
+    System.out.println("Different results for bag: "+ this.Id + ", correct result: "+this.CorrectSolution.Price+ ", your result: "+this.BagSolution.Price+ " and your weight: "+this.BagSolution.Weight);
+    if(this.BagSolution.ItemsIncluded) System.out.println("Correct items: "+this.CorrectSolution.Items.toString()+" your items: " +this.BagSolution.Items.toString());
   }
 
   public void readCorrectResult(String filename, int line){
@@ -72,9 +73,15 @@ public class Bag {
           continue;
         }
         this.CorrectSolution = new Solution();
+        this.CorrectSolution.ItemsIncluded=true;
         int id = myReader.nextInt();
         int n = myReader.nextInt();
         this.CorrectSolution.Price=myReader.nextInt();
+        for(int i=0; i<this.NumberOfItems; i++){
+          if(myReader.nextInt()==1){
+            this.CorrectSolution.Items.set(i);
+          }
+        }
         return;
       }
       myReader.close();
@@ -106,7 +113,7 @@ public class Bag {
   public String formatSolution(){
     if(this.BagSolution != null){
       String result="";
-      result=-this.Id+" "+this.NumberOfItems+" "+this.BagSolution.Price;
+      result=-this.Id+" "+this.NumberOfItems+" "+this.BagSolution.Price+' '+this.BagSolution.Weight;
       return result+" \n";
     }
     return "Not solved yet!";

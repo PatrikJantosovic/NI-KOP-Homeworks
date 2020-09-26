@@ -2,7 +2,7 @@ package com.knapsack;
 
 import java.util.Comparator;
 
-public class Item {
+public class Item{
 
   public int Price;
   public int Weight;
@@ -19,7 +19,7 @@ public class Item {
   public static Comparator<Item> byPriceToWeightRatio() {
     return new Comparator<Item>() {
       public int compare(Item a, Item b) {
-        return Double.compare(a.Price/a.Weight, b.Price/b.Weight);
+        return Double.compare(b.Price/b.Weight, a.Price/a.Weight);
       }
     };
   }
