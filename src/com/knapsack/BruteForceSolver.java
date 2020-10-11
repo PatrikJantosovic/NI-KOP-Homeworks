@@ -1,7 +1,5 @@
 package com.knapsack;
 
-import java.awt.desktop.SystemEventListener;
-
 public class BruteForceSolver {
 
     public boolean Constructive;
