@@ -1,15 +1,18 @@
 package com.knapsack;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.desktop.SystemEventListener;
 
 public class BruteForceSolver {
+
+    public boolean Constructive;
+    public long Counter = 0;
 
     //DEFACTO ide len o FOR-LOOP cez PowerSet
     //https://www.techiedelight.com/generate-powerset-set-java/
     // jednoduche riesenie cez binarne cisla - ani ho nemusim generovat len nascitavam weight a price
     public Solution Solve(Bag bag){
       Solution solution = new Solution();
+      solution.Type="BruteForce";
       double numberOfCombinations= Math.pow(2, bag.NumberOfItems);
       for(int i=0; i<numberOfCombinations; i++)
       {
@@ -25,11 +28,12 @@ public class BruteForceSolver {
           combPrice=combPrice+bag.Items.get(j).Price;
 
         }
-        if(combWeight<=bag.MaxWeight && combPrice>solution.Price){
+        if(combWeight<=bag.MaxWeight && combPrice>solution.Price && (combPrice >= bag.MinPrice || this.Constructive)){
           solution.Price=combPrice;
           solution.Weight=combWeight;
         }
       }
+      this.Counter+=(long)numberOfCombinations;
       return solution;
     }
 
@@ -53,7 +57,7 @@ public class BruteForceSolver {
         if(combWeight>bag.MaxWeight) break;
 
       }
-      if(combWeight<=bag.MaxWeight && combPrice>solution.Price){
+      if(combWeight<=bag.MaxWeight && combPrice>solution.Price && (combPrice >= bag.MinPrice || this.Constructive)){
         solution.Price=combPrice;
         solution.Weight=combWeight;
       }

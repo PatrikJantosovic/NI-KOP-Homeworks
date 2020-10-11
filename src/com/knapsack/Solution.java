@@ -7,12 +7,14 @@ public class Solution {
   public int Weight;
   public boolean ItemsIncluded;
   public BitSet Items;
+  public String Type;
 
   public Solution(){
     this.Price=0;
     this.Weight=0;
     this.ItemsIncluded=false;
     this.Items = new BitSet();
+    this.Type = "";
   }
 
 }

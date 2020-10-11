@@ -1,7 +1,5 @@
 package com.knapsack;
 
-import java.util.Comparator;
-
 public class Item{
 
   public int Price;
@@ -14,14 +12,6 @@ public class Item{
     this.Price=price;
     this.Weight=weight;
     this.Id=id;
-  }
-
-  public static Comparator<Item> byPriceToWeightRatio() {
-    return new Comparator<Item>() {
-      public int compare(Item a, Item b) {
-        return Double.compare(b.Price/b.Weight, a.Price/a.Weight);
-      }
-    };
   }
 
 }

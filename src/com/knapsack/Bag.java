@@ -16,6 +16,8 @@ public class Bag {
 
   public int MinPrice;
 
+  public int TotalPrice;
+
   public int Id;
 
   public int NumberOfItems;
@@ -43,6 +45,7 @@ public class Bag {
         for(int i=0; i<this.NumberOfItems; i++){
           int weight=myReader.nextInt();
           int price=myReader.nextInt();
+          this.TotalPrice+=price;
           Item item = new Item(price,weight,i);
           this.Items.add(item);
         }
@@ -57,7 +60,7 @@ public class Bag {
 
   public void checkSolution(){
     if(this.CorrectSolution.Price==this.BagSolution.Price) return;
-    System.out.println("Different results for bag: "+ this.Id + ", correct result: "+this.CorrectSolution.Price+ ", your result: "+this.BagSolution.Price+ " and your weight: "+this.BagSolution.Weight);
+    System.out.println("Different results ("+this.BagSolution.Type+") for bag: "+ this.Id + ", correct result: "+this.CorrectSolution.Price+ ", your result: "+this.BagSolution.Price+ " and your weight: "+this.BagSolution.Weight);
     if(this.BagSolution.ItemsIncluded) System.out.println("Correct items: "+this.CorrectSolution.Items.toString()+" your items: " +this.BagSolution.Items.toString());
   }
 
