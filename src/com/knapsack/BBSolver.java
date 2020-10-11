@@ -5,10 +5,9 @@ public class BBSolver {
 
   public Node bestNode;
   public boolean Constructive;
-  public long Counter=0;
+  public long Counter=1;
 
   public void solveRecursionNode(Node node, Bag bag){
-    this.Counter++;
     if(node.Price + node.Bound < bag.MinPrice && !this.Constructive){
       return; // do minima nedojdem = len pri DECISION, pri constructive verzii ma to netrapi
     }
@@ -22,7 +21,7 @@ public class BBSolver {
       return;
     else if (node.Price + node.Bound < bestNode.Price)
       return;
-
+    this.Counter++;
     //raz pridam item, raz nepridam item
     Node other = new Node(node);
     other.Level++;

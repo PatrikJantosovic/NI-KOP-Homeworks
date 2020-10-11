@@ -30,9 +30,9 @@ public class Main {
         /*BranchBound*/
         start=System.nanoTime();
         for (Bag b : Bags){
-            //long lastCount=bb.Counter;
+            long lastCount=bb.Counter;
             b.BagSolution=bb.solveRecursion(b);
-            //System.out.println(bb.Counter-lastCount);
+            System.out.println(bb.Counter-lastCount);
             if(bb.Constructive) { b.checkSolution(); }
         }
         end=System.nanoTime();
