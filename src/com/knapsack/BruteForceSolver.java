@@ -4,6 +4,7 @@ public class BruteForceSolver {
 
     public boolean Constructive;
     public long Counter = 0;
+    public long MaxCounter = 0;
 
     //DEFACTO ide len o FOR-LOOP cez PowerSet
     //https://www.techiedelight.com/generate-powerset-set-java/
@@ -32,6 +33,7 @@ public class BruteForceSolver {
         }
       }
       this.Counter+=(long)numberOfCombinations;
+      this.MaxCounter=(long)numberOfCombinations;
       return solution;
     }
 

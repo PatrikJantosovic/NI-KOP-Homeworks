@@ -5,8 +5,6 @@ import java.util.List;
 
 public class GreedySolver {
 
-  public long Counter=0;
-
   //Zoradime podla pomeru cena/vaha
   //A vo for loope prechadzame a vkladame ked sa vojde
 
@@ -31,7 +29,6 @@ public class GreedySolver {
     }
     solution.Price=combPrice;
     solution.Weight=combWeight;
-    this.Counter+=bag.NumberOfItems;
     return solution;
   }
 

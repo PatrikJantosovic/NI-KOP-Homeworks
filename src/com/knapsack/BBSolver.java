@@ -6,6 +6,8 @@ public class BBSolver {
   public Node bestNode;
   public boolean Constructive;
   public long Counter=1;
+  public long MaxCounter=0;
+  public long PreviousCounter=0;
 
   public void solveRecursionNode(Node node, Bag bag){
     if(node.Price + node.Bound < bag.MinPrice && !this.Constructive){
@@ -46,6 +48,8 @@ public class BBSolver {
     solveRecursionNode(root, bag);
     solution.Weight=this.bestNode.Weight;
     solution.Price=this.bestNode.Price;
+    if(this.Counter - this.PreviousCounter > this.MaxCounter) this.MaxCounter=this.Counter - this.PreviousCounter;
+    this.PreviousCounter = this.Counter;
     return solution;
   }
 

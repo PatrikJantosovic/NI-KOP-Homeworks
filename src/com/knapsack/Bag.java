@@ -26,6 +26,10 @@ public class Bag {
 
   public Solution CorrectSolution;
 
+  public int MaxItemPrice = 0;
+
+  public boolean Constructive = true;
+
   public void readInstance(String filename, int line){
     int currentLine = 0;
     try {
@@ -40,12 +44,14 @@ public class Bag {
         this.Id=myReader.nextInt();
         this.NumberOfItems=myReader.nextInt();
         this.MaxWeight=myReader.nextInt();
-        this.MinPrice=myReader.nextInt();
+        if(!this.Constructive) this.MinPrice=myReader.nextInt();
         this.Items=new ArrayList<Item>();
         for(int i=0; i<this.NumberOfItems; i++){
           int weight=myReader.nextInt();
           int price=myReader.nextInt();
           this.TotalPrice+=price;
+          // zide sa v FPTAS
+          this.MaxItemPrice=Integer.max(price,this.MaxItemPrice);
           Item item = new Item(price,weight,i);
           this.Items.add(item);
         }
@@ -64,7 +70,23 @@ public class Bag {
     if(this.BagSolution.ItemsIncluded) System.out.println("Correct items: "+this.CorrectSolution.Items.toString()+" your items: " +this.BagSolution.Items.toString());
   }
 
-  public void readCorrectResult(String filename, int line){
+  public double calcError(){
+    if(this.CorrectSolution.Price==this.BagSolution.Price || this.CorrectSolution.Price==0 || this.BagSolution.Price==0) return 0d;
+    double error = 0d;
+    error = Math.abs(this.CorrectSolution.Price - this.BagSolution.Price);
+    error = error / Math.max(this.CorrectSolution.Price, this.BagSolution.Price);
+    if(error==1){
+
+    }
+    return error;
+  }
+
+  public void checkItems(){
+    if(!this.BagSolution.ItemsIncluded) return;
+    if(!this.CorrectSolution.Items.toString().equals(this.BagSolution.Items.toString())) System.out.println("Correct items: "+this.CorrectSolution.Items.toString()+" your items: " +this.BagSolution.Items.toString());
+  }
+
+  public void readCorrectResult(String filename, int line, int bagId){
     int currentLine = 0;
     try {
       File instance = new File(filename);
@@ -75,9 +97,14 @@ public class Bag {
           String data = myReader.nextLine();
           continue;
         }
+        int id = myReader.nextInt();
+        if(bagId!=id){
+          String data = myReader.nextLine();
+          continue;
+        }
         this.CorrectSolution = new Solution();
         this.CorrectSolution.ItemsIncluded=true;
-        int id = myReader.nextInt();
+
         int n = myReader.nextInt();
         this.CorrectSolution.Price=myReader.nextInt();
         for(int i=0; i<this.NumberOfItems; i++){

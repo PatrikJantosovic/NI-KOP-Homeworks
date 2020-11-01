@@ -82,7 +82,7 @@ Tests were run on Windows 10 64bit machine, with AMD Ryzen 7 PRO 2700U and Radeo
 Looking at the computational time, we can see significant differences in the algorithms. In the Figure 1 we can see BF (blue) line being the Brute-Force algorithm and BB(orange) line being the Branch and Bound algorithm.
 \\
 \\
-Figure 2 shows us that while computational complexity of Branch\&Bound is smaller then the Brute-Force, the number of visited node grows exponentially depending on N. 
+Figure 2 shows us that while computational complexity of Branch\&Bound is smaller than the Brute-Force, the number of visited node grows exponentially depending on N. 
 \\
 \\
 The histogram (Figure 3) was created for 10 items. It shows that most of the \textit{cutting} has happened at the start, which shows that there are a lot of instances when minimum price cannot be reached at all. Also, apparently, there are lot of instances when \textit{cutting} occurred at the end or did not occur at all and whole tree was generated.
@@ -94,7 +94,7 @@ The histogram (Figure 3) was created for 10 items. It shows that most of the \te
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{NRpass.PNG}
-    \caption{Computational complexity of NR data set (in nodes visited)}
+    \caption{Average Computational complexity of NR data set (in nodes visited) for given N}
 \end{figure}
 \begin{figure}[H]
     \centering
@@ -116,13 +116,31 @@ Moreover, the histogram (Figure 6) shows that the decrease in performance is cau
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{ZRpass.PNG}
-    \caption{Computational complexity of ZR data set (in nodes visited)}
+    \caption{Average computational complexity of ZR data set (in nodes visited) for given N}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{ZRhistogram.PNG}
     \caption{Histogram of ZR data set for N=10 }
 \end{figure}
+
+\subsection{Maximum Complexity}
+This subsection is added as I forgot to publish the results of maximum computational complexity on both data sets NR and ZR. The tables show that in the worst case scenario (maximum visited nodes for instance of N), Branch\&Bound behaves exactly like Brute-Force algorithm and the number of nodes visited is $2^N$ on NR data set. Slight improvement was surprisingly seen on ZR data set. Table was intentionally chosen instead of graph as the difference is too small to be visible on graph.
+\begin{center}
+ \begin{tabular}{||c c c c||} 
+ \hline
+ N & Branch\&Bound NR & Branch\&Bound ZR & Brute-Force \\ [0.5ex] 
+ \hline\hline
+ 4 & 15 & 16 & 16 \\ 
+ \hline
+ 10 & 1023 & 1019 & 1024 \\
+ \hline
+ 15 & 32767 & 31956 & 32768 \\
+ \hline
+ 20 & 1048575 & 1018174 & 1048576 \\
+ \hline \hline
+\end{tabular}
+\end{center}
 
 % Summary and Conclusions
 \section{Summary and Conclusions}
