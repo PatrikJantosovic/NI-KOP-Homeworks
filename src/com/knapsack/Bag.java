@@ -74,10 +74,7 @@ public class Bag {
     if(this.CorrectSolution.Price==this.BagSolution.Price || this.CorrectSolution.Price==0 || this.BagSolution.Price==0) return 0d;
     double error = 0d;
     error = Math.abs(this.CorrectSolution.Price - this.BagSolution.Price);
-    error = error / Math.max(this.CorrectSolution.Price, this.BagSolution.Price);
-    if(error==1){
-
-    }
+    error = error / this.CorrectSolution.Price;
     return error;
   }
 
